@@ -1,3 +1,120 @@
-<p>
-  ingreso works!
-</p>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h4>Registrar Ingreso</h4>
+    <button class="btn btn-primary" (click)="showModal(modalIngreso)">
+      Añadir
+    </button>
+  </div>
+  <p class="text-muted font-weight-bold mt-3 mb-1">
+    Vehiculos en el parqueadero
+  </p>
+  <div class="table-responsive">
+    <table class="table table-striped align-items-center">
+      <thead>
+        <tr>
+          <th>Placa</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Año</th>
+          <th>Tipo</th>
+          <th>Ingreso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (tickets$| async)?.vehicleReducer">
+            <td>{{item.vehicle.licencePlate}}</td>
+            <td>{{item.vehicle.brand}}</td>
+            <td>{{item.vehicle.model}}</td>
+            <td>{{item.vehicle.year}}</td>
+            <td>{{item.vehicle.vehicleType}}</td>
+            <td>{{formatDate(item.entryTime)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+<ng-template #modalIngreso>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Nuevo ingreso</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="entryForm">
+      <div class="form-group">
+        <label for="licencePlate" class="font-weight-bold">Placa:</label>
+        <input
+          id="licencePlate"
+          #licencePlate
+          formControlName="licencePlate"
+          class="form-control"
+          placeholder="Placa del vehiculo"
+        />
+      </div>
+      <div class="form-group">
+        <label for="brand" class="font-weight-bold">Marca:</label>
+        <input
+          id="brand"
+          #brand
+          formControlName="brand"
+          class="form-control"
+          placeholder="Marca"
+        />
+      </div>
+      <div class="form-group">
+        <label for="model" class="font-weight-bold">Modelo:</label>
+        <input
+          id="model"
+          #model
+          formControlName="model"
+          class="form-control"
+          placeholder="Modelo"
+        />
+      </div>
+      <div class="form-group">
+        <label for="year" class="font-weight-bold">Año:</label>
+        <input
+          id="year"
+          #year
+          formControlName="year"
+          class="form-control"
+          placeholder="Año"
+        />
+      </div>
+      <div class="form-group">
+        <label for="vehicleType" class="font-weight-bold"
+          >Tipo de vehiculo:</label
+        >
+        <select
+          class="custom-select"
+          id="vehicleType"
+          #vehicleType
+          formControlName="vehicleType"
+        >
+          <option selected value="">Seleccione</option>
+          <option *ngFor="let vehicle of vehicleTypes" [value]="vehicle">{{
+            vehicle
+          }}</option>
+        </select>
+      </div>
+    </form>
+    <div></div>
+  </div>
+  <div class="modal-footer rounded">
+    <button
+      type="button"
+      id="btnSave"
+      class="btn btn-primary"
+      (click)="addVehicle()"
+    >
+      Guardar
+    </button>
+  </div>
+</ng-template>

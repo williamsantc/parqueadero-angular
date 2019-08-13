@@ -1,4 +1,4 @@
-import Vehicle from './vehicle.model'
+import Vehicle from './vehicle.model';
 
 export default interface Ticket {
   vehicle: Vehicle;

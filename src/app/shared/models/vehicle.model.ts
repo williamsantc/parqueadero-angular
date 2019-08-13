@@ -1,12 +1,12 @@
-export default interface Vehicle {
+export default class Vehicle {
   licencePlate: string;
-  vehicleType: vehicleTyes;
+  vehicleType: vehicleTypes | '';
   brand: string;
   model: string;
-  year: number;
+  year: string;
 }
 
-export enum vehicleTyes {
+export enum vehicleTypes {
   CAR = 'carro',
   MOTORCYCLE = 'moto'
 }
