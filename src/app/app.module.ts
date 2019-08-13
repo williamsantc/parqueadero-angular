@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import TicketReducers from './core/store/reducers/ticket.reducers';
+import StoreReducers from './core/store/reducers/index';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import TicketReducers from './core/store/reducers/ticket.reducers';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    StoreModule.forRoot({tickets: TicketReducers})
+    StoreModule.forRoot({mainReducer: StoreReducers})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,14 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import Vehicle from 'src/app/shared/models/vehicle.model';
+import Vehicle, { vehicleTypes } from 'src/app/shared/models/vehicle.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addVehicle } from 'src/app/core/store/actions/ticket.actions';
-import { TicketReducersType } from 'src/app/core/store/reducers/ticket.reducers';
 import * as moment from 'moment';
+import { StateType } from 'src/app/core/store/reducers';
+import Ticket from 'src/app/shared/models/ticket.model';
+import { getVehicles } from 'src/app/core/store/selectors/tickets.selectors';
 
 type vehicleKeysType = keyof Vehicle;
 
@@ -16,13 +18,14 @@ type vehicleKeysType = keyof Vehicle;
   styleUrls: ['./ingreso.component.scss']
 })
 export class IngresoComponent implements OnInit {
-  tickets$: Observable<TicketReducersType>;
+  tickets$: Observable<Ticket[]>;
   modalRef: BsModalRef;
   vehicle: Vehicle;
   entryForm: FormGroup;
-  vehicleType: vehicleKeysType[];
-  constructor(private modalService: BsModalService, private store: Store<TicketReducersType> ) {
-    this.tickets$ = store.pipe(select('tickets'));
+  vehicleKeys: vehicleKeysType[];
+  vehicleTypes = Object.values(vehicleTypes);
+  constructor(private modalService: BsModalService, private store: Store<StateType> ) {
+    this.tickets$ = store.pipe(select(getVehicles));
   }
 
   ngOnInit(): void {
@@ -33,13 +36,13 @@ export class IngresoComponent implements OnInit {
       year: '',
       vehicleType: ''
     };
-    this.vehicleType = Object.keys(this.vehicle) as vehicleKeysType[];
+    this.vehicleKeys = Object.keys(this.vehicle) as vehicleKeysType[];
     this.buildForm();
   }
 
   buildForm() {
     let innerControl = {};
-    this.vehicleType.forEach(key => {
+    this.vehicleKeys.forEach(key => {
       innerControl = {
         ...innerControl,
         [key]: new FormControl(this.vehicle[key])
@@ -54,7 +57,7 @@ export class IngresoComponent implements OnInit {
 
   }
   addVehicle() {
-    this.vehicleType.forEach(key => {
+    this.vehicleKeys.forEach(key => {
       this.vehicle[key] = this.entryForm.get(key).value;
     });
     this.store.dispatch(addVehicle({ vehicle: this.vehicle }));

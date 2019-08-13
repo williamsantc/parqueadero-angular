@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of (tickets$| async)?.vehicleReducer">
+        <tr *ngFor="let item of (tickets$| async)">
             <td>{{item.vehicle.licencePlate}}</td>
             <td>{{item.vehicle.brand}}</td>
             <td>{{item.vehicle.model}}</td>
