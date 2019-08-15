@@ -17,10 +17,17 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link cursor-pointer" (click)="navigate('/parking/ingreso')">Ingreso</a>
+        <a
+          class="nav-link cursor-pointer"
+          (click)="navigate('/parking/ingreso')"
+          >Ingreso</a
+        >
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto align-items-center">
+      <span class="navbar-text mr-md-2"
+        >{{ (tickets$ | async).length }} Vehiculos</span
+      >
       <li class="nav-item active">
         <a
           class="custom-nav-link"
