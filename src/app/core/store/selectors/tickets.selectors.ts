@@ -1,7 +1,7 @@
-import { StateType } from '../reducers';
-import { createSelector } from '@ngrx/store';
+import {createSelector} from '@ngrx/store';
+import {ParkingState} from '../reducers';
 
-const vehiclesSelector = (state: StateType) => state.mainReducer.TicketReducers.vehicleReducer;
+const vehiclesSelector = (state: ParkingState) => state.vehicles;
 
 export const getVehicles = createSelector(
     vehiclesSelector,

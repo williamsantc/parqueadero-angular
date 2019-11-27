@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { StateType } from 'src/app/core/store/reducers';
-import { Observable } from 'rxjs';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {getVehicles} from 'src/app/core/store/selectors/tickets.selectors';
+import {ParkingState} from '../../../core/store/reducers';
 import Ticket from '../../models/ticket.model';
-import { getVehicles } from 'src/app/core/store/selectors/tickets.selectors';
 
 @Component({
   selector: 'app-parking-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
   public tickets$: Observable<Ticket[]>;
-  constructor(private router: Router, private store: Store<StateType> ) {
+  constructor(private router: Router, private store: Store<ParkingState> ) {
     this.tickets$ = store.pipe(select(getVehicles));
    }
 

@@ -1,20 +1,20 @@
-import { StoreModule } from '@ngrx/store';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { ParkingComponent } from './modules/parking/parking.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import TicketReducers from './core/store/reducers/ticket.reducers';
-import StoreReducers from './core/store/reducers/index';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {StoreModule} from '@ngrx/store';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {storeConfig} from './core/store/config.store';
+import {ParkingState, reducers} from './core/store/reducers/index';
+import {ParkingComponent} from './modules/parking/parking.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ParkingComponent
+    ParkingComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -24,9 +24,10 @@ import StoreReducers from './core/store/reducers/index';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    StoreModule.forRoot({mainReducer: StoreReducers})
+    StoreModule.forRoot<ParkingState>(reducers, storeConfig),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

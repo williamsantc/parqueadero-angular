@@ -8,7 +8,7 @@ import { ParkingRoutingModule } from './parking-routing.module';
   imports: [
     ComponentsModule,
     ParkingRoutingModule,
-    PagesModule
-  ]
+    PagesModule,
+  ],
 })
 export class ParkingModule { }

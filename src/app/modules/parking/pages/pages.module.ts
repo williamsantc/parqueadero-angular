@@ -1,9 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../components/components.module';
 import { IndexComponent } from './index/index.component';
 import { IngresoComponent } from './ingreso/ingreso.component';
-import { ComponentsModule } from '../components/components.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [IndexComponent, IngresoComponent],
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ComponentsModule
-  ]
+    ComponentsModule,
+  ],
 })
 export class PagesModule { }

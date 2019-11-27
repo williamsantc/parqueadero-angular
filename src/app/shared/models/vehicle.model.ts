@@ -8,5 +8,5 @@ export default class Vehicle {
 
 export enum vehicleTypes {
   CAR = 'carro',
-  MOTORCYCLE = 'moto'
+  MOTORCYCLE = 'moto',
 }

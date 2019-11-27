@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ParkingComponent } from './modules/parking/parking.component';
 
 const routes: Routes = [{
   path: '',
   redirectTo: 'parking',
-  pathMatch: 'full'
+  pathMatch: 'full',
 },
 {
   path: 'parking',
@@ -13,15 +13,15 @@ const routes: Routes = [{
   children: [
     {
       path: '',
-      loadChildren: './modules/parking/parking.module#ParkingModule'
-    }
-  ]
+      loadChildren: './modules/parking/parking.module#ParkingModule',
+    },
+  ],
 }];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
