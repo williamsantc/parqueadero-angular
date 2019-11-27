@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ParkingComponent } from './modules/parking/parking.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {UrlConstants} from './shared/url.constants';
 
-const routes: Routes = [{
-  path: '',
-  redirectTo: 'parking',
-  pathMatch: 'full',
-},
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: UrlConstants.ROUTE_BASE,
+    pathMatch: 'full',
+  },
 {
-  path: 'parking',
-  component: ParkingComponent,
+  path: UrlConstants.ROUTE_BASE,
   children: [
     {
       path: '',

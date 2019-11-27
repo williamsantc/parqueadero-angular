@@ -1,7 +1,7 @@
 <nav
   class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm"
 >
-  <a class="navbar-brand cursor-pointer" (click)="navigate('/')">Parqueadero</a>
+  <a class="navbar-brand cursor-pointer" (click)="navigateIndex()">Parqueadero</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -19,7 +19,7 @@
       <li class="nav-item active">
         <a
           class="nav-link cursor-pointer"
-          (click)="navigate('/parking/ingreso')"
+          (click)="navigateEntry()"
           >Ingreso</a
         >
       </li>

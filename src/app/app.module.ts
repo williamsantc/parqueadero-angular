@@ -8,17 +8,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {storeConfig} from './core/store/config.store';
 import {ParkingState, reducers} from './core/store/reducers/index';
-import {ParkingComponent} from './modules/parking/parking.component';
-import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ParkingComponent,
   ],
   imports: [
     AppRoutingModule,
-    SharedModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

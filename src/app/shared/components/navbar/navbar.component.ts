@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {getVehicles} from 'src/app/core/store/selectors/tickets.selectors';
 import {ParkingState} from '../../../core/store/reducers';
 import Ticket from '../../models/ticket.model';
+import {UrlConstants} from '../../url.constants';
 
 @Component({
   selector: 'app-parking-navbar',
@@ -17,8 +18,12 @@ export class NavbarComponent {
     this.tickets$ = store.pipe(select(getVehicles));
    }
 
-  public navigate(url: string) {
-    this.router.navigate([url]);
+  public navigateIndex() {
+    this.router.navigate([UrlConstants.ROUTE_LANDING_PAGE]);
+  }
+
+  public navigateEntry() {
+    this.router.navigate([UrlConstants.ROUTE_ENTRY]);
   }
 
 }
